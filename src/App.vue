@@ -1,28 +1,24 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div id="app">
+     <MainTabBar></MainTabBar>
+     <keep-alive>
+       <!-- 判断离开组件时是否销毁当前组件 需要在router中添加meta字段 否则全保留 -->
+    <router-view v-if="$route.meta.keepAlive"></router-view>
+     </keep-alive>
+     <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+import MainTabBar from 'components/content/MainTabBar'
+  export default {
+    name: 'app',
+    components: {
+      MainTabBar
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "assets/css/base.css";
 </style>
