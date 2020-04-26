@@ -1,10 +1,10 @@
 <template>
 <div id="banner">
-  <swiper :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
+  <swiper :options="swiperOption" ref="mySwiper">
     <!-- slides -->
-    <swiper-slide v-for="item in banners" :key="item.link">
+    <swiper-slide v-for="(item, index) in banners" :key="index">
       <a :href="item.link">
-        <img :src="item.image" />
+        <img :src="item.image" @load="imageLoad" />
       </a>
     </swiper-slide>
 
@@ -51,10 +51,11 @@ export default {
   mounted() {
     // current swiper instance
     // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-    console.log("this is current swiper instance object", this.swiper);
   },
   methods: {
-    callback() {}
+    imageLoad() {
+      this.$emit('BannerLoad')
+    }
   }
 };
 </script>

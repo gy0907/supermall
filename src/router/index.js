@@ -5,6 +5,7 @@ const Home = () => import('views/Home')
 const Menu = () => import('views/Menu')
 const ShopCar = () => import('views/ShopCar')
 const Profile = () => import('views/Profile')
+const Detail = () => import('views/detail/Detail')
 
 // 创建路由实例
 Vue.use(VueRouter)
@@ -31,6 +32,10 @@ const routes = [
     path: '/Profile',
     component: Profile
   },
+  {
+    path: '/detail/:iid',
+    component: Detail
+  }
 ]
 
 const router = new VueRouter({
